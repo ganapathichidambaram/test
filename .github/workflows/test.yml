@@ -1,15 +1,14 @@
 name: My Workflow
-
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      my_input:
+        description: 'A sample input'
+        required: true
 
 jobs:
-  my-job:
+  my_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Print Input
-        run: echo "The input value is ${{ inputs.my_input }}"
-        env:
-          INPUT_MY_INPUT: ${{ github.event.inputs.my_input }}
-
+      - name: Print message
+        run: echo "Hello, ${{ github.event.inputs.my_input }}"
